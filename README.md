@@ -13,7 +13,7 @@ A web application I designed, built and deployed for a private clinic in Tashken
 
 > **This is a case study.** The source code is private because it is a client project. I'm happy to walk through the code, architecture or tests in an interview. All screenshots below use fictional demo data.
 
-| | |
+| At a glance | |
 |---|---|
 | **Role** | Sole developer: requirements, data model, backend, frontend, testing, deployment |
 | **Timeline** | August – September 2026, in production since September |
@@ -144,4 +144,5 @@ Every domain module (staff, finance, duty, salary, pharmacy, expenses, users) fo
 ---
 
 **Mukhammad Batoshev** — Python backend developer (FastAPI · Django · DRF)
+
 [GitHub profile](https://github.com/Aminovich7) · m.aminovich7@gmail.com · Telegram [@aminovich7](https://t.me/Aminovich7)
