@@ -7,16 +7,16 @@
 ![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![Tests](https://img.shields.io/badge/tests-158_passing-2ea44f)
-![Status](https://img.shields.io/badge/status-deployed_to_production-2ea44f)
+![Status](https://img.shields.io/badge/status-deployed-2ea44f)
 
-A web application I designed, built and deployed for a private clinic in Tashkent. It replaced the clinic's Excel spreadsheets and paper records for receipts, doctors' commissions, staff salaries, the pharmacy account and day-to-day expenses.
+A web application I designed, built and deployed for a private clinic. It is built to replace the clinic's Excel spreadsheets and paper records for receipts, doctors' commissions, staff salaries, the pharmacy account and day-to-day expenses, and is about to go into use.
 
 > **This is a case study.** The source code is private because it is a client project. I'm happy to walk through the code, architecture or tests in an interview. All screenshots below use fictional demo data.
 
 | At a glance | |
 |---|---|
 | **Role** | Sole developer: requirements, data model, backend, frontend, testing, deployment |
-| **Timeline** | August – September 2026, in production since September |
+| **Timeline** | Built August – September 2026; deployed in September, launching at the clinic soon |
 | **Backend** | FastAPI (async), SQLAlchemy 2.0 with asyncpg, PostgreSQL, Alembic, Redis, Pydantic v2 |
 | **Frontend** | Server-rendered Jinja2 pages with vanilla JavaScript, fully in Uzbek |
 | **Hosting** | Docker container on Render, PostgreSQL on Neon, Redis on Render Key Value |
@@ -26,14 +26,14 @@ A web application I designed, built and deployed for a private clinic in Tashken
 
 ## The problem
 
-Every visit, surgery and room stay produced a paper receipt. At the end of each month someone had to work out, by hand and in Excel:
+Every visit, surgery and room stay produces a paper receipt. At the end of each month someone has to work out, by hand and in Excel:
 
-- how much each doctor earned: a different percentage of every receipt, after a fixed per-receipt deduction or the surgery's own costs;
-- what each nurse and administrator was owed: a fixed monthly salary, prorated for partial months, plus any paid overtime;
-- how much had already been paid out as advances, and what was still due;
+- how much each doctor has earned: a different percentage of every receipt, after a fixed per-receipt deduction or the surgery's own costs;
+- what each nurse and administrator is owed: a fixed monthly salary, prorated for partial months, plus any paid overtime;
+- how much has already been paid out as advances, and what is still due;
 - the running balance with the pharmacy supplier, and the clinic's other expenses.
 
-It was slow, it was easy to get wrong, and nobody could see the clinic's real position before the month was over.
+It is slow, it is easy to get wrong, and nobody can see the clinic's real position before the month is over.
 
 ## What I built
 
@@ -105,7 +105,7 @@ Every domain module (staff, finance, duty, salary, pharmacy, expenses, users) fo
 
 **Money has to be exact.** Amounts are whole Uzbek soums stored as `Numeric(12,0)` and calculated with Python `Decimal`. Each receipt is rounded (`ROUND_HALF_UP`) *before* totals are summed, so a report always equals the sum of the receipts in it. That is why reports aggregate in Python rather than with SQL `SUM()`, which would round once at the end and drift. The live preview in the browser uses exact `BigInt` arithmetic and was checked against the server's formulas over 4,013 cases.
 
-**Dates are business dates in Tashkent time.** Reports filter on the date the service happened, not when it was typed in, using an inclusive start and an exclusive end at local midnight. I found and fixed a bug where the browser's `toISOString()` converted "the 1st of the month" to UTC, silently pulling the previous day into every monthly figure.
+**Dates are business dates in the clinic's time zone.** Reports filter on the date the service happened, not when it was typed in, using an inclusive start and an exclusive end at local midnight. I found and fixed a bug where the browser's `toISOString()` converted "the 1st of the month" to UTC, silently pulling the previous day into every monthly figure.
 
 **Payroll proration.** Fixed salaries are prorated by working day (Sundays excluded), split per calendar month and rounded per month, and never accrue before a person's hire date. A whole month always pays exactly the salary.
 
@@ -131,7 +131,7 @@ Every domain module (staff, finance, duty, salary, pharmacy, expenses, users) fo
 
 ## Deployment and operations
 
-- **Production:** a Docker image on Render, PostgreSQL on Neon and Redis on Render Key Value. The deployment is documented as a step-by-step checklist, including the pitfalls I hit, such as Neon's connection pooler breaking asyncpg's prepared statements.
+- **Hosting:** a Docker image on Render, PostgreSQL on Neon and Redis on Render Key Value. The deployment is documented as a step-by-step checklist, including the pitfalls I hit, such as Neon's connection pooler breaking asyncpg's prepared statements.
 - **Backups:** Neon's free tier keeps only a few hours of history, so I wrote PowerShell scripts that take a daily `pg_dump`, check that every dump can be read back by `pg_restore`, keep 30 days of dailies plus every 1st-of-month dump permanently, and restore only after an explicit typed confirmation.
 - **Migrations:** Alembic, applied before each release.
 
