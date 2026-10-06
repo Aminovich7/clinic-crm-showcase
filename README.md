@@ -11,6 +11,10 @@
 
 A web application I designed, built and deployed for a private clinic. It is built to replace the clinic's Excel spreadsheets and paper records for receipts, doctors' commissions, staff salaries, the pharmacy account and day-to-day expenses, and is about to go into use.
 
+### ▶ [Try the live demo](https://aminovich7.github.io/clinic-crm-demo/)
+
+The real interface, running in your browser on fictional sample data, in English or the original Uzbek. Sign in as the owner, a manager or an assistant with one click; changes stay in your browser. The demo is a static build of the real frontend whose API calls are answered in the browser by a JavaScript port of the backend's rules, checked against the real API on the same data.
+
 > **This is a case study.** The source code is private because it is a client project. I'm happy to walk through the code, architecture or tests in an interview. All screenshots below use fictional demo data.
 
 | At a glance | |
