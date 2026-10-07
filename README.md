@@ -121,7 +121,7 @@ Every domain module (staff, finance, duty, salary, pharmacy, expenses, users) fo
 
 - JWT access and refresh tokens with a unique ID per token. Logout revokes tokens through a Redis blocklist, and blocking a user or changing their password invalidates all of their sessions at once.
 - Argon2 password hashing, and rate limits on login (5 per minute) and token refresh.
-- A strict Content-Security-Policy, HSTS, clickjacking and MIME-sniffing protection, and API docs switched off in production.
+- A strict Content-Security-Policy, HSTS, clickjacking and MIME-sniffing protection, and API docs switched off on the live server.
 - Stored-XSS protection: every user-entered value is escaped before it reaches the page. I verified the fix in a real browser with a malicious payload.
 - A container that runs as a non-root user, pinned dependencies, and secrets kept out of git and rotated.
 
@@ -149,4 +149,4 @@ Every domain module (staff, finance, duty, salary, pharmacy, expenses, users) fo
 
 **Mukhammad Batoshev** — Python backend developer (FastAPI · Django · DRF)
 
-[GitHub profile](https://github.com/Aminovich7) · m.aminovich7@gmail.com · Telegram [@aminovich7](https://t.me/Aminovich7)
+[GitHub profile](https://github.com/Aminovich7) · [LinkedIn](https://www.linkedin.com/in/mukhammad-batoshev) · m.aminovich7@gmail.com · Telegram [@aminovich7](https://t.me/Aminovich7)
