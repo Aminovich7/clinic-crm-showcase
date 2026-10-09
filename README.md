@@ -24,7 +24,7 @@ The real interface, running in your browser on fictional sample data, in English
 | **Backend** | FastAPI (async), SQLAlchemy 2.0 with asyncpg, PostgreSQL, Alembic, Redis, Pydantic v2 |
 | **Frontend** | Server-rendered Jinja2 pages with vanilla JavaScript, fully in Uzbek |
 | **Hosting** | Docker container on Render, PostgreSQL on Neon, Redis on Render Key Value |
-| **Size** | 86 API endpoints · 10 database tables · 10 migrations · 158 automated tests |
+| **Size** | 85 API endpoints · 10 database tables · 10 migrations · 158 automated tests |
 
 ---
 
@@ -92,7 +92,7 @@ flowchart LR
 
     subgraph App["FastAPI app — Docker on Render"]
         direction TB
-        R["Routers<br/>86 endpoints"] --> D["Auth & role<br/>dependencies"]
+        R["Routers<br/>85 endpoints"] --> D["Auth & role<br/>dependencies"]
         D --> S["Services<br/>business rules"]
         S --> C["calculations.py<br/>pure money math"]
     end
