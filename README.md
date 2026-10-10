@@ -147,6 +147,6 @@ Every domain module (staff, finance, duty, salary, pharmacy, expenses, users) fo
 
 ---
 
-**Mukhammad Batoshev** — Python backend developer (FastAPI · Django · DRF)
+**Mukhammad Batoshev** — Backend engineer (Python · FastAPI · Django · DRF)
 
 [GitHub profile](https://github.com/Aminovich7) · [LinkedIn](https://www.linkedin.com/in/mukhammad-batoshev) · m.aminovich7@gmail.com · Telegram [@aminovich7](https://t.me/Aminovich7)
